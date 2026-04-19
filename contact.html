@@ -1,0 +1,265 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact JIMKAB Electrical Services | Request a Quote</title>
+  <meta
+    name="description"
+    content="Call, WhatsApp or send a quote request to JIMKAB Electrical Services for electrical repairs, installation, wiring, maintenance and troubleshooting in Kampala."
+  />
+  <meta
+    name="keywords"
+    content="contact electrician Kampala, request electrical quote, WhatsApp electrician Uganda"
+  />
+  <meta property="og:title" content="Contact JIMKAB Electrical Services" />
+  <meta
+    property="og:description"
+    content="Request a quote or contact JIMKAB Electrical Services for fast electrical support."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/logo.jpg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <a href="tel:0788573000">Call: 0788573000</a>
+        <a href="mailto:jimkabelectricalservices@gmail.com">jimkabelectricalservices@gmail.com</a>
+        <a href="https://maps.app.goo.gl/6Rhe4T3JDaTsgGSPA?g_st=aw" target="_blank" rel="noopener">Kampala, Uganda</a>
+      </div>
+      <a href="contact.html" class="topbar__cta">Get a Quote</a>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header__inner">
+      <a href="index.html" class="brand" aria-label="JIMKAB Electrical Services Home">
+        <img src="images/logo.jpg" alt="JIMKAB Electrical Services logo" class="brand__logo" />
+        <span class="brand__text">
+          <strong>JIMKAB</strong>
+          <small>Electrical Services</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open Menu" aria-expanded="false" aria-controls="siteNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="contact.html">Contact</a>
+        <a href="tel:0788573000" class="btn btn--primary nav-btn">Call Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero__content reveal">
+        <span class="eyebrow">Request help fast</span>
+        <h1>Contact JIMKAB Electrical Services</h1>
+        <p>
+          Need repairs, wiring, installation, maintenance or a quote? Use the fastest option below and take action now.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-card-grid">
+          <article class="contact-card reveal">
+            <div class="contact-card__icon">📞</div>
+            <h3>Call</h3>
+            <p>Speak directly for urgent electrical issues or quick consultation.</p>
+            <a href="tel:0788573000" class="btn btn--primary btn--full">Call 0788573000</a>
+          </article>
+
+          <article class="contact-card reveal">
+            <div class="contact-card__icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p>Send your issue, location or service request directly on WhatsApp.</p>
+            <a href="https://wa.me/256788573000?text=Hello%20JIMKAB%20Electrical%20Services%2C%20I%20need%20electrical%20help." target="_blank" rel="noopener" class="btn btn--secondary btn--full">Chat on WhatsApp</a>
+          </article>
+
+          <article class="contact-card reveal">
+            <div class="contact-card__icon">✉️</div>
+            <h3>Email</h3>
+            <p>Use email for formal requests, project details or business enquiries.</p>
+            <a href="mailto:jimkabelectricalservices@gmail.com" class="btn btn--outline btn--full">Send Email</a>
+          </article>
+
+          <article class="contact-card reveal">
+            <div class="contact-card__icon">📍</div>
+            <h3>Location</h3>
+            <p>Serving Kampala and nearby areas with responsive electrical support.</p>
+            <a href="https://maps.app.goo.gl/6Rhe4T3JDaTsgGSPA?g_st=aw" target="_blank" rel="noopener" class="btn btn--outline btn--full">Open Map</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted">
+      <div class="container form-layout">
+        <div class="form-copy reveal">
+          <span class="eyebrow">Quote request</span>
+          <h2>Tell Us What You Need</h2>
+          <p>
+            This form is front-end only for now, but it is fully styled, validated and ready to connect to
+            Formspree, Netlify Forms, EmailJS or a custom backend later.
+          </p>
+
+          <ul class="check-list">
+            <li>Fast response path for service requests</li>
+            <li>Clean quote request flow</li>
+            <li>Professional trust-focused layout</li>
+            <li>Clear next step for the visitor</li>
+          </ul>
+        </div>
+
+        <div class="form-card reveal">
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+                <small class="form-error"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number *</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g. 0788573000" required />
+                <small class="form-error"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your email address" />
+                <small class="form-error"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceNeeded">Service Needed *</label>
+                <select id="serviceNeeded" name="serviceNeeded" required>
+                  <option value="">Select a service</option>
+                  <option>Electrical Installation</option>
+                  <option>Wiring / Rewiring</option>
+                  <option>Lighting Installation</option>
+                  <option>Fault Diagnosis</option>
+                  <option>Socket / Switch Repair</option>
+                  <option>Breaker / Distribution Board Work</option>
+                  <option>Maintenance / Upgrade</option>
+                  <option>Other</option>
+                </select>
+                <small class="form-error"></small>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="location">Location *</label>
+                <input type="text" id="location" name="location" placeholder="Your area / address" required />
+                <small class="form-error"></small>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="6" placeholder="Explain the issue or work you need done" required></textarea>
+                <small class="form-error"></small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">Submit Request</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="map-box reveal">
+          <div class="map-box__content">
+            <span class="eyebrow">Location</span>
+            <h2>Open the Map Link</h2>
+            <p>
+              Use the provided Google Maps link to view the service location and share directions if needed.
+            </p>
+            <a
+              href="https://maps.app.goo.gl/6Rhe4T3JDaTsgGSPA?g_st=aw"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--secondary"
+            >
+              View Location on Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-banner__inner reveal">
+        <div>
+          <span class="eyebrow">Strong next step</span>
+          <h2>Need Electrical Service? Do Not Leave This Page Without Taking Action.</h2>
+          <p>Call now, send a WhatsApp message or submit the form and move the job forward.</p>
+        </div>
+        <div class="cta-banner__actions">
+          <a href="tel:0788573000" class="btn btn--primary">Call Now</a>
+          <a href="https://wa.me/256788573000?text=Hello%20JIMKAB%20Electrical%20Services%2C%20I%20want%20to%20book%20an%20electrical%20service." target="_blank" rel="noopener" class="btn btn--secondary">WhatsApp Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div>
+        <h3>JIMKAB Electrical Services</h3>
+        <p>Professional electrical help for clients who want trust, speed and practical solutions.</p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-list">
+          <li><a href="tel:0788573000">0788573000</a></li>
+          <li><a href="mailto:jimkabelectricalservices@gmail.com">jimkabelectricalservices@gmail.com</a></li>
+          <li><a href="https://maps.app.goo.gl/6Rhe4T3JDaTsgGSPA?g_st=aw" target="_blank" rel="noopener">View Location</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Pages</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> JIMKAB Electrical Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a
+    href="https://wa.me/256788573000?text=Hello%20JIMKAB%20Electrical%20Services%2C%20I%20need%20electrical%20help."
+    class="floating-btn floating-btn--whatsapp"
+    target="_blank"
+    rel="noopener"
+    aria-label="Chat on WhatsApp"
+  >
+    WhatsApp
+  </a>
+
+  <a href="tel:0788573000" class="floating-btn floating-btn--call" aria-label="Call now">
+    Call
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
