@@ -7,10 +7,12 @@
   const contactForm = document.getElementById("contactForm");
   const formStatus = document.getElementById("formStatus");
 
+  // YEAR
   yearEls.forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
 
+  // NAV
   if (navToggle && siteNav) {
     navToggle.addEventListener("click", () => {
       const isOpen = siteNav.classList.toggle("open");
@@ -25,6 +27,7 @@
     });
   }
 
+  // FAQ
   faqQuestions.forEach((btn) => {
     btn.addEventListener("click", () => {
       const parent = btn.closest(".faq-item");
@@ -44,6 +47,7 @@
     });
   });
 
+  // ANIMATION
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -62,38 +66,39 @@
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 
+  // FORM
   if (contactForm) {
     const fields = {
       fullName: {
         input: document.getElementById("fullName"),
-        validate: (value) => value.trim().length >= 2,
+        validate: (v) => v.trim().length >= 2,
         message: "Enter your full name."
       },
       phoneNumber: {
         input: document.getElementById("phoneNumber"),
-        validate: (value) => /^[0-9+\s()-]{9,}$/.test(value.trim()),
+        validate: (v) => /^[0-9+\s()-]{9,}$/.test(v.trim()),
         message: "Enter a valid phone number."
       },
       email: {
         input: document.getElementById("email"),
-        validate: (value) =>
-          value.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+        validate: (v) =>
+          v.trim() === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
         message: "Enter a valid email address."
       },
       serviceNeeded: {
         input: document.getElementById("serviceNeeded"),
-        validate: (value) => value.trim() !== "",
+        validate: (v) => v.trim() !== "",
         message: "Select a service."
       },
       location: {
         input: document.getElementById("location"),
-        validate: (value) => value.trim().length >= 2,
+        validate: (v) => v.trim().length >= 2,
         message: "Enter your location."
       },
       message: {
         input: document.getElementById("message"),
-        validate: (value) => value.trim().length >= 10,
-        message: "Write a clearer message of at least 10 characters."
+        validate: (v) => v.trim().length >= 10,
+        message: "Write at least 10 characters."
       }
     };
 
@@ -111,14 +116,9 @@
       errorEl.textContent = "";
     };
 
-    const validateField = (fieldConfig) => {
-      const value = fieldConfig.input.value;
-      const valid = fieldConfig.validate(value);
-      if (!valid) {
-        setError(fieldConfig.input, fieldConfig.message);
-      } else {
-        clearError(fieldConfig.input);
-      }
+    const validateField = (field) => {
+      const valid = field.validate(field.input.value);
+      valid ? clearError(field.input) : setError(field.input, field.message);
       return valid;
     };
 
@@ -127,27 +127,54 @@
       field.input.addEventListener("blur", () => validateField(field));
     });
 
-    contactForm.addEventListener("submit", (e) => {
+    // 🔥 REAL SUBMIT LOGIC
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       let isFormValid = true;
-
-      Object.values(fields).forEach((field) => {
-        const valid = validateField(field);
-        if (!valid) isFormValid = false;
+      Object.values(fields).forEach((f) => {
+        if (!validateField(f)) isFormValid = false;
       });
 
       if (!isFormValid) {
-        formStatus.textContent = "Please fix the highlighted fields and submit again.";
+        formStatus.textContent = "Fix the highlighted fields.";
         formStatus.className = "form-status error";
         return;
       }
 
-      formStatus.textContent =
-        "Request submitted successfully. This demo form is front-end only for now, but the structure is ready for Formspree, Netlify Forms, EmailJS or a backend connection.";
-      formStatus.className = "form-status success";
+      const formData = {
+        fullName: fields.fullName.input.value.trim(),
+        phoneNumber: fields.phoneNumber.input.value.trim(),
+        email: fields.email.input.value.trim(),
+        serviceNeeded: fields.serviceNeeded.input.value,
+        location: fields.location.input.value.trim(),
+        message: fields.message.input.value.trim()
+      };
 
-      contactForm.reset();
+      try {
+        formStatus.textContent = "Sending...";
+        formStatus.className = "form-status";
+
+        const res = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          formStatus.textContent = "Request sent successfully.";
+          formStatus.className = "form-status success";
+          contactForm.reset();
+        } else {
+          throw new Error(data.message);
+        }
+      } catch (err) {
+        console.error(err);
+        formStatus.textContent = "Failed. Try again.";
+        formStatus.className = "form-status error";
+      }
     });
   }
 });

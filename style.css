@@ -892,6 +892,49 @@ select {
 }
 
 /* Responsive */
+
+
+@media (max-width: 1100px) {
+  .hero__grid--split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero--home .hero__content {
+    order: 1;
+  }
+
+  .hero--home .hero__media {
+    order: 2;
+  }
+
+  .hero__image-card--clean img {
+    min-height: 360px;
+    max-height: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--home {
+    padding: 4rem 0;
+  }
+
+  .hero--home h1 {
+    max-width: 100%;
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+
+  .hero--home .hero__lead {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .hero__image-card--clean img {
+    min-height: 280px;
+    max-height: 420px;
+    border-radius: 20px;
+  }
+}
 @media (max-width: 1100px) {
   .hero__grid,
   .showcase__grid,
@@ -1108,46 +1151,117 @@ select {
   }
 }
 
-#homepage {
-  position: relative;
-  background-image: url('images/electricalwork.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 6rem 0;
+ .hero--home {
+  background: linear-gradient(135deg, #f5f8fc 0%, #eef3f8 100%);
+  padding: 1.5rem 0;
 }
 
-/* DARK OVERLAY FOR READABILITY */
-#homepage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 33, 55, 0.75); /* dark blue overlay */
-  z-index: 0;
-}
-
-/* MAKE CONTENT SIT ABOVE OVERLAY */
-#homepage .container {
-  position: relative;
-  z-index: 2;
-}
-
-#homepage h1,
-#homepage p,
-#homepage span,
-#homepage strong {
-  color: #ffffff;
-}
-
-#homepage .mini-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(6px);
-  color: #fff;
-}
-
-#homepage {
-  min-height: 90vh;
-  display: flex;
+.hero__grid--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
   align-items: center;
+  gap: 3rem;
+}
+
+.hero--home .hero__content {
+  max-width: 100%;
+}
+
+.hero--home .eyebrow {
+  color: var(--accent);
+}
+
+.hero--home h1 {
+  max-width: 11ch;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.hero--home .hero__lead {
+  color: var(--text-soft);
+  max-width: 32rem;
+}
+
+.hero--home .hero__highlights {
+  margin-top: 1.25rem;
+}
+
+.hero--home .mini-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+}
+
+.hero--home .mini-card strong {
+  color: var(--primary-dark);
+}
+
+.hero--home .mini-card span {
+  color: var(--text-soft);
+}
+
+.hero__image-card--clean {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.hero__image-card--clean img {
+  width: 100%;
+  height: auto;
+  min-height: 540px;
+  max-height: 720px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(12, 34, 66, 0.14);
+}
+
+.floating-social {
+  position: fixed;
+  left: 18px;
+  z-index: 1002;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-social:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+.floating-social svg {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+}
+
+.floating-social--instagram {
+  bottom: 86px;
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.floating-social--tiktok {
+  bottom: 22px;
+  background: #111111;
+}
+
+@media (max-width: 560px) {
+  .floating-social {
+    width: 48px;
+    height: 48px;
+    left: 12px;
+  }
+
+  .floating-social svg {
+    width: 21px;
+    height: 21px;
+  }
 }

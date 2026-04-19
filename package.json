@@ -1,0 +1,28 @@
+{
+  "name": "jimkab-site",
+  "version": "1.0.0",
+  "description": "JIMKAB electrical services",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscarSawyer/JIMKAB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/OscarSawyer/JIMKAB/issues"
+  },
+  "homepage": "https://github.com/OscarSawyer/JIMKAB#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemailer": "^8.0.5"
+  }
+}
