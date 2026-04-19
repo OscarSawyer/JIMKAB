@@ -136,74 +136,32 @@
         Clear services, practical solutions and strong calls to action. That is what this site should have had from the start.
       </p> -->
     </div>
-
-    <div class="service-grid service-grid--images">
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/electrical-installation.jpg" alt="Electrical installation service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Electrical Installation</h3>
-          <p>Professional installation of new electrical systems for homes, shops, offices and rental properties.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/electrical-wiring.jpg" alt="Electrical wiring and rewiring service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Wiring &amp; Rewiring</h3>
-          <p>Safe wiring for new buildings and rewiring for old or faulty electrical systems that need an upgrade.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/lighting-installation.png" alt="Lighting installation service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Lighting Installation</h3>
-          <p>Indoor and outdoor lighting solutions that improve visibility, safety and the look of your space.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/socketandswitchrepaire.png" alt="Socket and switch repair service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Socket &amp; Switch Repair</h3>
-          <p>Repair or replacement of damaged, loose or faulty switches, sockets and electrical fittings.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/faultfinding.jpg" alt="Fault finding and diagnosis service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Fault Finding</h3>
-          <p>Quick diagnosis and repair of electrical faults, power interruptions, short circuits and unstable connections.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
-
-      <article class="service-card reveal">
-        <div class="service-card__image">
-          <img src="images/maintenance.png" alt="Electrical maintenance service" />
-        </div>
-        <div class="service-card__content">
-          <h3>Maintenance</h3>
-          <p>Routine maintenance and upgrades to keep your electrical systems running safely and efficiently.</p>
-          <a href="contact.html" class="text-link">Request this service</a>
-        </div>
-      </article>
+ <div class="services-cube-section reveal" id="servicesCubeSection">
+  <div class="services-cube-shell">
+    <div class="services-cube-stage">
+      <div class="services-cube" id="servicesCube" aria-live="polite">
+        <article class="services-cube__face services-cube__face--front"></article>
+        <article class="services-cube__face services-cube__face--top"></article>
+        <article class="services-cube__face services-cube__face--back"></article>
+        <article class="services-cube__face services-cube__face--bottom"></article>
+      </div>
     </div>
+
+    <div class="services-cube__controls">
+      <button type="button" class="services-cube__btn" id="servicesCubePrev" aria-label="Previous service">
+        ↑ Prev
+      </button>
+      <button type="button" class="services-cube__btn services-cube__btn--primary" id="servicesCubeToggle" aria-label="Pause service rotation">
+        Pause
+      </button>
+      <button type="button" class="services-cube__btn" id="servicesCubeNext" aria-label="Next service">
+        Next ↓
+      </button>
+    </div>
+  </div>
+
+  <div class="services-cube__picker" id="servicesCubePicker" aria-label="Choose a service"></div>
+</div>
 
     <div class="section-cta reveal">
       <a href="services.html" class="btn btn--secondary">View All Services</a>
@@ -384,47 +342,76 @@
     </div>
   </footer>
 
-  <a
-    href="https://wa.me/256788573000?text=Hello%20JIMKAB%20Electrical%20Services%2C%20I%20need%20electrical%20help."
-    class="floating-btn floating-btn--whatsapp"
-    target="_blank"
-    rel="noopener"
-    aria-label="Chat on WhatsApp"
-  >
-    WhatsApp
-  </a>
+  <div class="floating-carousel floating-carousel--left" data-carousel="social">
+  <div class="floating-carousel__viewport">
+    <div class="floating-carousel__track">
+      <a
+        href="https://www.instagram.com/jimkabelectrical?igsh=aGdkajAzejhlNmgx"
+        class="floating-chip floating-chip--instagram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Visit JIMKAB Electrical Services on Instagram"
+      >
+        <span class="floating-chip__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.94 2.12a1.06 1.06 0 1 1 0 2.12 1.06 1.06 0 0 1 0-2.12ZM12 6.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 6.5Zm0 1.5A4 4 0 1 0 16 12a4 4 0 0 0-4-4Z"/>
+          </svg>
+        </span>
+        <span class="floating-chip__label">Follow on Instagram</span>
+      </a>
 
-  <a
-    href="tel:0788573000"
-    class="floating-btn floating-btn--call"
-    aria-label="Call now"
-  >
-    Call
-  </a>
+      <a
+        href="https://www.tiktok.com/@jimkabelectricalservices?_r=1&_t=ZS-95foI6bKHLz"
+        class="floating-chip floating-chip--tiktok"
+        target="_blank"
+        rel="noopener"
+        aria-label="Visit JIMKAB Electrical Services on TikTok"
+      >
+        <span class="floating-chip__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 3c.2 1.7 1.2 3.3 2.7 4.2 1 .6 2 .9 3.3 1V11c-1.6 0-3.2-.5-4.5-1.4v6.2a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .8.1v2.9a2.7 2.7 0 1 0 2.7 2.7V3H14Z"/>
+          </svg>
+        </span>
+        <span class="floating-chip__label">Follow on TikTok</span>
+      </a>
+    </div>
+  </div>
 
-  <script src="script.js"></script>
-  <a
-  href="https://www.instagram.com/jimkabelectrical?igsh=aGdkajAzejhlNmgx"
-  class="floating-social floating-social--instagram"
-  target="_blank"
-  rel="noopener"
-  aria-label="Visit JIMKAB Electrical Services on Instagram"
->
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.94 2.12a1.06 1.06 0 1 1 0 2.12 1.06 1.06 0 0 1 0-2.12ZM12 6.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 6.5Zm0 1.5A4 4 0 1 0 16 12a4 4 0 0 0-4-4Z"/>
-  </svg>
-</a>
+  <div class="floating-carousel__dots" aria-hidden="true">
+    <button class="floating-carousel__dot is-active" type="button"></button>
+    <button class="floating-carousel__dot" type="button"></button>
+  </div>
+</div>
 
-<a
-  href="https://www.tiktok.com/@jimkabelectricalservices?_r=1&_t=ZS-95foI6bKHLz"
-  class="floating-social floating-social--tiktok"
-  target="_blank"
-  rel="noopener"
-  aria-label="Visit JIMKAB Electrical Services on TikTok"
->
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M14 3c.2 1.7 1.2 3.3 2.7 4.2 1 .6 2 .9 3.3 1V11c-1.6 0-3.2-.5-4.5-1.4v6.2a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .8.1v2.9a2.7 2.7 0 1 0 2.7 2.7V3H14Z"/>
-  </svg>
-</a>
+<div class="floating-carousel floating-carousel--right" data-carousel="contact">
+  <div class="floating-carousel__viewport">
+    <div class="floating-carousel__track">
+      <a
+        href="https://wa.me/256788573000?text=Hello%20JIMKAB%20Electrical%20Services%2C%20I%20need%20electrical%20help."
+        class="floating-chip floating-chip--whatsapp"
+        target="_blank"
+        rel="noopener"
+        aria-label="Chat on WhatsApp"
+      >
+        <span class="floating-chip__label">WhatsApp</span>
+      </a>
+
+      <a
+        href="tel:0788573000"
+        class="floating-chip floating-chip--call"
+        aria-label="Call now"
+      >
+        <span class="floating-chip__label">Call</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="floating-carousel__dots" aria-hidden="true">
+    <button class="floating-carousel__dot is-active" type="button"></button>
+    <button class="floating-carousel__dot" type="button"></button>
+  </div>
+</div>
+
+<script src="script.js"></script> 
 </body>
 </html>

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
   const siteNav = document.getElementById("siteNav");
   const yearEls = document.querySelectorAll("#year");
@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.hostname === "localhost"
       ? "http://localhost:5000"
       : "https://jimkab-backend-live.onrender.com";
+
+  const OWNER_WHATSAPP_NUMBER = "256788573000";
 
   // YEAR
   yearEls.forEach((el) => {
@@ -170,9 +172,31 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data.success) {
           formStatus.textContent = "Request sent successfully.";
           formStatus.className = "form-status success";
+
+          const whatsappText = [
+            "New JIMKAB quote request",
+            "",
+            `Name: ${formData.fullName}`,
+            `Phone: ${formData.phoneNumber}`,
+            `Email: ${formData.email || "Not provided"}`,
+            `Service: ${formData.serviceNeeded}`,
+            `Location: ${formData.location}`,
+            `Message: ${formData.message}`
+          ].join("\n");
+
+          const whatsappUrl = `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`;
+
+          // Try opening in a new tab first
+          const popup = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+          // Fallback if popup is blocked
+          if (!popup || popup.closed || typeof popup.closed === "undefined") {
+            window.location.href = whatsappUrl;
+          }
+
           contactForm.reset();
         } else {
-          throw new Error(data.message);
+          throw new Error(data.message || "Request failed.");
         }
       } catch (err) {
         console.error(err);
@@ -181,4 +205,274 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // 3D SERVICES CUBE CAROUSEL
+  const servicesCube = document.getElementById("servicesCube");
+  const servicesCubePrev = document.getElementById("servicesCubePrev");
+  const servicesCubeNext = document.getElementById("servicesCubeNext");
+  const servicesCubeToggle = document.getElementById("servicesCubeToggle");
+  const servicesCubePicker = document.getElementById("servicesCubePicker");
+
+  if (
+    servicesCube &&
+    servicesCubePrev &&
+    servicesCubeNext &&
+    servicesCubeToggle &&
+    servicesCubePicker
+  ) {
+    const servicesData = [
+      {
+        title: "Electrical Installation",
+        description:
+          "Professional installation of new electrical systems for homes, shops, offices and rental properties.",
+        image: "images/electrical-installation.jpg",
+        alt: "Electrical installation service",
+        link: "contact.html"
+      },
+      {
+        title: "Wiring & Rewiring",
+        description:
+          "Safe wiring for new buildings and rewiring for old or faulty electrical systems that need an upgrade.",
+        image: "images/electrical-wiring.jpg",
+        alt: "Electrical wiring and rewiring service",
+        link: "contact.html"
+      },
+      {
+        title: "Lighting Installation",
+        description:
+          "Indoor and outdoor lighting solutions that improve visibility, safety and the look of your space.",
+        image: "images/lighting-installation.png",
+        alt: "Lighting installation service",
+        link: "contact.html"
+      },
+      {
+        title: "Socket & Switch Repair",
+        description:
+          "Repair or replacement of damaged, loose or faulty switches, sockets and electrical fittings.",
+        image: "images/socketandswitchrepaire.png",
+        alt: "Socket and switch repair service",
+        link: "contact.html"
+      },
+      {
+        title: "Fault Finding",
+        description:
+          "Quick diagnosis and repair of electrical faults, power interruptions, short circuits and unstable connections.",
+        image: "images/faultfinding.jpg",
+        alt: "Fault finding and diagnosis service",
+        link: "contact.html"
+      },
+      {
+        title: "Maintenance",
+        description:
+          "Routine maintenance and upgrades to keep your electrical systems running safely and efficiently.",
+        image: "images/maintenance.png",
+        alt: "Electrical maintenance service",
+        link: "contact.html"
+      }
+    ];
+
+    const faces = {
+      front: servicesCube.querySelector(".services-cube__face--front"),
+      top: servicesCube.querySelector(".services-cube__face--top"),
+      back: servicesCube.querySelector(".services-cube__face--back"),
+      bottom: servicesCube.querySelector(".services-cube__face--bottom")
+    };
+
+    let currentIndex = 0;
+    let autoRotate = true;
+    let autoRotateId = null;
+    let isAnimating = false;
+
+    const getWrappedIndex = (index) => {
+      const len = servicesData.length;
+      return ((index % len) + len) % len;
+    };
+
+    const renderFace = (faceEl, serviceIndex) => {
+      const service = servicesData[getWrappedIndex(serviceIndex)];
+      faceEl.innerHTML = `
+        <div class="services-cube-card__media">
+          <img src="${service.image}" alt="${service.alt}">
+        </div>
+        <div class="services-cube-card__content">
+          <span class="services-cube-card__eyebrow">Service option</span>
+          <h3>${service.title}</h3>
+          <p>${service.description}</p>
+          <div class="services-cube-card__actions">
+            <a href="${service.link}" class="btn btn--secondary">Request this service</a>
+            <a href="tel:0788573000" class="btn btn--outline">Call for help</a>
+          </div>
+        </div>
+      `;
+    };
+
+    const updatePickerState = () => {
+      servicesCubePicker.querySelectorAll(".services-cube__pick").forEach((btn, idx) => {
+        btn.classList.toggle("is-active", idx === getWrappedIndex(currentIndex));
+      });
+    };
+
+    const renderCubeState = () => {
+      renderFace(faces.front, currentIndex);
+      renderFace(faces.top, currentIndex + 1);
+      renderFace(faces.back, currentIndex + 2);
+      renderFace(faces.bottom, currentIndex - 1);
+
+      servicesCube.style.transition = "none";
+      servicesCube.style.transform = "rotateX(0deg)";
+      servicesCube.offsetHeight;
+
+      updatePickerState();
+    };
+
+    const buildPicker = () => {
+      servicesCubePicker.innerHTML = servicesData
+        .map(
+          (service, index) => `
+            <button type="button" class="services-cube__pick" data-service-index="${index}">
+              ${service.title}
+            </button>
+          `
+        )
+        .join("");
+
+      servicesCubePicker.querySelectorAll(".services-cube__pick").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          stopAutoRotate();
+          currentIndex = Number(btn.dataset.serviceIndex);
+          renderCubeState();
+        });
+      });
+    };
+
+    const rotateNext = () => {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      servicesCube.style.transition =
+        "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+      servicesCube.style.transform = "rotateX(-90deg)";
+
+      setTimeout(() => {
+        currentIndex = getWrappedIndex(currentIndex + 1);
+        renderCubeState();
+        isAnimating = false;
+      }, 820);
+    };
+
+    const rotatePrev = () => {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      servicesCube.style.transition =
+        "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+      servicesCube.style.transform = "rotateX(90deg)";
+
+      setTimeout(() => {
+        currentIndex = getWrappedIndex(currentIndex - 1);
+        renderCubeState();
+        isAnimating = false;
+      }, 820);
+    };
+
+    const startAutoRotate = () => {
+      stopAutoRotate(false);
+      autoRotateId = setInterval(() => {
+        rotateNext();
+      }, 3400);
+      autoRotate = true;
+      servicesCubeToggle.textContent = "Pause";
+      servicesCube.classList.remove("is-paused");
+    };
+
+    const stopAutoRotate = (setPlayState = true) => {
+      if (autoRotateId) {
+        clearInterval(autoRotateId);
+        autoRotateId = null;
+      }
+
+      if (setPlayState) {
+        autoRotate = false;
+        servicesCubeToggle.textContent = "Play";
+        servicesCube.classList.add("is-paused");
+      }
+    };
+
+    servicesCubeNext.addEventListener("click", () => {
+      stopAutoRotate();
+      rotateNext();
+    });
+
+    servicesCubePrev.addEventListener("click", () => {
+      stopAutoRotate();
+      rotatePrev();
+    });
+
+    servicesCubeToggle.addEventListener("click", () => {
+      if (autoRotate) {
+        stopAutoRotate();
+      } else {
+        startAutoRotate();
+      }
+    });
+
+    servicesCube.addEventListener("mouseenter", stopAutoRotate);
+    servicesCube.addEventListener("mouseleave", () => {
+      if (!autoRotateId && autoRotate) startAutoRotate();
+    });
+    servicesCube.addEventListener("touchstart", stopAutoRotate, { passive: true });
+
+    buildPicker();
+    renderCubeState();
+    startAutoRotate();
+  }
+
+  // FLOATING CAROUSELS
+  const floatingCarousels = document.querySelectorAll(".floating-carousel");
+
+  floatingCarousels.forEach((carousel) => {
+    const track = carousel.querySelector(".floating-carousel__track");
+    const items = carousel.querySelectorAll(".floating-chip");
+    const dots = carousel.querySelectorAll(".floating-carousel__dot");
+
+    if (!track || items.length <= 1) return;
+
+    let index = 0;
+    let intervalId = null;
+
+    const slideTo = (newIndex) => {
+      index = newIndex;
+      const itemHeight = items[0].offsetHeight;
+      track.style.transform = `translateY(-${index * itemHeight}px)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === index);
+      });
+    };
+
+    const startCarousel = () => {
+      stopCarousel();
+      intervalId = setInterval(() => {
+        const nextIndex = (index + 1) % items.length;
+        slideTo(nextIndex);
+      }, 2800);
+    };
+
+    const stopCarousel = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    window.addEventListener("resize", () => slideTo(index));
+
+    carousel.addEventListener("mouseenter", stopCarousel);
+    carousel.addEventListener("mouseleave", startCarousel);
+    carousel.addEventListener("touchstart", stopCarousel, { passive: true });
+    carousel.addEventListener("touchend", startCarousel);
+
+    slideTo(0);
+    startCarousel();
+  });
 });
