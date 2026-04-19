@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const navToggle = document.getElementById("navToggle");
   const siteNav = document.getElementById("siteNav");
   const yearEls = document.querySelectorAll("#year");
@@ -6,6 +6,11 @@
   const revealEls = document.querySelectorAll(".reveal");
   const contactForm = document.getElementById("contactForm");
   const formStatus = document.getElementById("formStatus");
+
+  const API_BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : "https://jimkab-backend-live.onrender.com";
 
   // YEAR
   yearEls.forEach((el) => {
@@ -127,7 +132,6 @@
       field.input.addEventListener("blur", () => validateField(field));
     });
 
-    // 🔥 REAL SUBMIT LOGIC
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -155,7 +159,7 @@
         formStatus.textContent = "Sending...";
         formStatus.className = "form-status";
 
-        const res = await fetch("http://localhost:5000/api/contact", {
+        const res = await fetch(`${API_BASE_URL}/api/contact`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData)
